@@ -6,7 +6,7 @@ const HomePage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Spotify Clone</title>
+        <title>Spotify Clone - Home</title>
       </Head>
       <Home />
     </>

@@ -15,17 +15,20 @@
     "test-all": "yarn check-format && yarn check-types && yarn lint && yarn build"
   },
   "dependencies": {
+    "@heroicons/react": "^1.0.5",
     "mobx": "^6.3.7",
     "mobx-react-lite": "^3.2.2",
     "next": "12.0.4",
-    "next-auth": "^3.29.0",
+    "next-auth": "^4.0.0-beta.7",
     "next-seo": "^4.28.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "spotify-web-api-node": "^5.0.2"
   },
   "devDependencies": {
     "@types/node": "16.11.10",
     "@types/react": "17.0.37",
+    "@types/spotify-web-api-node": "^5.0.4",
     "autoprefixer": "^10.4.0",
     "eslint": "7",
     "eslint-config-next": "12.0.4",
