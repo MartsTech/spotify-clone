@@ -1,0 +1,12 @@
+{
+  "name": "spotify-clone",
+  "version": "1.0.0",
+  "repository": "https://github.com/MartsTech/spotify-clone.git",
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^7.0.0"
+  },
+  "scripts": {
+    "prepare": "husky install"
+  }
+}

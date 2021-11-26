@@ -1,0 +1,14 @@
+{
+  "name": "Spotify Clone",
+  "short_name": "Spotify Clone",
+  "icons": [
+    {
+      "src": "/meta/icon.png",
+      "sizes": "512x512"
+    }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "display": "standalone",
+  "start_url": "https://spotify-clone-martstech.vercel.app"
+}
