@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
 import spotifyApi, { LOGIN_URL } from "utils/spotify";
 
-NextAuth({
+export default NextAuth({
   providers: [
     SpotifyProvider({
       clientId: process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID,
@@ -22,12 +22,11 @@ NextAuth({
           accessToken: account.access_token,
           refreshTokem: account.refresh_token,
           username: account.providerAccountId,
-          accessTokenExpires: account.expires_at || 0 * 1000,
+          accessTokenExpires: Number(account.expires_at) * 1000,
         };
       }
 
-      // @ts-ignore
-      if (Date.now() < (token.accessTokenExpires || 0)) {
+      if (Date.now() < Number(token.accessTokenExpires)) {
         return token;
       }
 
@@ -60,11 +59,11 @@ const refreshAccessToken = async (token: any) => {
       refreshToken: refreshToken.refresh_token ?? token.refreshToken,
     };
   } catch (err) {
+    console.error(err);
+
     return {
       ...token,
-      error: "RefreshTokenError",
+      error: "RefreshAccessTokenError",
     };
   }
 };
-
-export default NextAuth;

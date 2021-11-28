@@ -1,8 +1,13 @@
 import { createContext, useContext } from "react";
+import AuthStore from "./authStore";
 
-interface Store {}
+interface Store {
+  authStore: AuthStore;
+}
 
-export const store: Store = {};
+export const store: Store = {
+  authStore: new AuthStore(),
+};
 
 export const StoreContext = createContext(store);
 
