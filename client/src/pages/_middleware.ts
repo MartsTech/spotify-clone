@@ -9,12 +9,12 @@ export const middleware = async (req: NextRequest) => {
 
   const { pathname } = req.nextUrl;
 
-  if (!token && pathname !== "/login") {
-    return NextResponse.redirect("/login");
-  }
-
   if (pathname.includes("/api/auth") || token) {
     return NextResponse.next();
+  }
+
+  if (!token && pathname !== "/login") {
+    return NextResponse.redirect("/login");
   }
 
   return;

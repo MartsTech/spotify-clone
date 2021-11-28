@@ -1,8 +1,12 @@
+import useLoadPlaylists from "hooks/useLoadPlaylists";
+import { observer } from "mobx-react-lite";
 import Home from "modules/home";
 import type { NextPage } from "next";
 import Head from "next/head";
 
 const HomePage: NextPage = () => {
+  useLoadPlaylists();
+
   return (
     <>
       <Head>
@@ -13,4 +17,4 @@ const HomePage: NextPage = () => {
   );
 };
 
-export default HomePage;
+export default observer(HomePage);

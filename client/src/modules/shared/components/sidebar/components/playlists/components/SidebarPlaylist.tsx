@@ -1,8 +1,15 @@
-import React from "react";
+import { FC } from "react";
 
-const SidebarPlaylist = () => {
+interface SidebarPlaylistProps {
+  title: string;
+  onClick: () => void;
+}
+
+const SidebarPlaylist: FC<SidebarPlaylistProps> = ({ title, onClick }) => {
   return (
-    <div className="cursor-pointer hover:text-white">Playlist Name...</div>
+    <div onClick={onClick} className="cursor-pointer hover:text-white">
+      {title}
+    </div>
   );
 };
 

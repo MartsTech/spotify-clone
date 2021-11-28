@@ -1,22 +1,18 @@
 import { observer } from "mobx-react-lite";
 import { useStore } from "stores/store";
-import { signIn } from "next-auth/react";
+import LoginProvider from "./LoginProvider";
 
 const LoginProviders = () => {
   const { providers } = useStore().authStore;
 
-  if (!providers) return null;
+  if (!providers) {
+    return null;
+  }
 
   return (
     <>
-      {Object.values(providers).map(({ name, id }) => (
-        <button
-          key={name}
-          onClick={() => signIn(id, { callbackUrl: "/" })}
-          className="bg-[#18D860] text-white py-4 px-8 rounded-full"
-        >
-          Login with {name}
-        </button>
+      {Object.values(providers).map((provider) => (
+        <LoginProvider key={provider.name} provider={provider} />
       ))}
     </>
   );

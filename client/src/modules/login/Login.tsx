@@ -1,4 +1,5 @@
 import LoginProviders from "./components/LoginProviders";
+import Image from "next/image";
 
 const Login = () => {
   return (
@@ -6,13 +7,9 @@ const Login = () => {
       className="flex flex-col items-center bg-black min-h-screen
       w-full justify-center"
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/meta/icon.png"
-        loading="lazy"
-        alt="logo"
-        className="w-52 mb-5"
-      />
+      <div className="relative w-52 h-52 mb-5">
+        <Image src="/meta/icon.png" layout="fill" alt="logo" loading="lazy" />
+      </div>
       <LoginProviders />
     </div>
   );

@@ -4,5 +4,8 @@
     "es2021": true,
     "node": true
   },
+  "rules": {
+    "@next/next/no-img-element": "off"
+  },
   "extends": ["next", "prettier"]
 }
