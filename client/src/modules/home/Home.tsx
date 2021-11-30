@@ -1,4 +1,5 @@
 import Header from "modules/shared/components/header";
+import Player from "modules/shared/components/player";
 import Playlist from "modules/shared/components/playlist";
 import Sidebar from "modules/shared/components/sidebar";
 
@@ -12,6 +13,9 @@ const Home = () => {
           <Playlist />
         </div>
       </main>
+      <div className="sticky bottom-0">
+        <Player />
+      </div>
     </div>
   );
 };

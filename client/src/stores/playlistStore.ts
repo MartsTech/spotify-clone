@@ -1,15 +1,18 @@
-import { makeAutoObservable, reaction } from "mobx";
+import { makeAutoObservable, reaction, runInAction } from "mobx";
 import spotifyApi from "utils/spotify";
 import { store } from "./store";
 
 class PlaylistStore {
   playlists: SpotifyApi.PlaylistObjectSimplified[] = [];
   selectedPlaylist: SpotifyApi.PlaylistObjectSimplified | null = null;
-  selectedPlaylistTracks: SpotifyApi.PlaylistTrackObject[] = [];
   tracksRegister: Map<string, SpotifyApi.PlaylistTrackObject[]> = new Map<
     string,
     SpotifyApi.PlaylistTrackObject[]
   >();
+  selectedPlaylistTracks: SpotifyApi.PlaylistTrackObject[] = [];
+  selectedTrack: SpotifyApi.TrackObjectFull | null = null;
+  isPlaying = false;
+  volume = 50;
 
   get playlistCount() {
     return this.playlists.length;
@@ -22,9 +25,7 @@ class PlaylistStore {
       () => this.selectedPlaylist,
       async (playlist) => {
         if (playlist) {
-          this.selectedPlaylistTracks = await this.loadPlaylistTracks(
-            playlist.id
-          );
+          this.setTracks(playlist);
         }
       }
     );
@@ -40,6 +41,16 @@ class PlaylistStore {
     this.selectedPlaylist = playlist;
   };
 
+  setTracks = async (playlist: SpotifyApi.PlaylistObjectSimplified) => {
+    if (!playlist) return;
+
+    const tracks = await this.loadPlaylistTracks(playlist.id);
+
+    runInAction(() => {
+      this.selectedPlaylistTracks = tracks;
+    });
+  };
+
   loadPlaylistTracks = async (id: string) => {
     if (this.tracksRegister.has(id)) {
       return this.tracksRegister.get(id) as SpotifyApi.PlaylistTrackObject[];
@@ -49,6 +60,26 @@ class PlaylistStore {
     this.tracksRegister.set(id, response.body.items);
 
     return response.body.items;
+  };
+
+  loadCurrentTrack = async () => {
+    const track = await spotifyApi.getMyCurrentPlayingTrack();
+    const state = await spotifyApi.getMyCurrentPlaybackState();
+
+    runInAction(() => {
+      this.selectedTrack = track.body.item as SpotifyApi.TrackObjectFull;
+      this.isPlaying = state.body.is_playing;
+      this.volume = 50;
+    });
+  };
+
+  playTrack = (track: SpotifyApi.TrackObjectFull) => {
+    this.selectedTrack = track;
+    this.isPlaying = true;
+
+    spotifyApi.play({
+      uris: [track.uri],
+    });
   };
 }
 

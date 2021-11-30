@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { AuthProviders } from "types/auth";
+import type { AuthProviders } from "types/auth";
 
 class AuthStore {
   providers: AuthProviders | null = null;

@@ -1,3 +1,4 @@
+import useLoadCurrentTrack from "hooks/useLoadCurrentTrack";
 import useLoadPlaylists from "hooks/useLoadPlaylists";
 import { observer } from "mobx-react-lite";
 import Home from "modules/home";
@@ -6,6 +7,7 @@ import Head from "next/head";
 
 const HomePage: NextPage = () => {
   useLoadPlaylists();
+  useLoadCurrentTrack();
 
   return (
     <>

@@ -3,12 +3,17 @@ import { useStore } from "stores/store";
 import PlaylistSong from "./components/PlaylistSong";
 
 const PlaylistSongs = () => {
-  const { selectedPlaylistTracks } = useStore().playlistStore;
+  const { selectedPlaylistTracks, playTrack } = useStore().playlistStore;
 
   return (
     <div className="px-8 flex flex-col space-y-1 pb-28">
       {selectedPlaylistTracks.map(({ track }, index) => (
-        <PlaylistSong key={track.id} track={track} order={index + 1} />
+        <PlaylistSong
+          key={track.id}
+          track={track}
+          order={index + 1}
+          onClick={() => playTrack(track)}
+        />
       ))}
     </div>
   );
