@@ -4,12 +4,12 @@ import { useStore } from "stores/store";
 
 const PlaylistCover = () => {
   const { selectedPlaylist } = useStore().playlistStore;
-  const [color] = useBannerColor(selectedPlaylist);
+  const [color] = useBannerColor();
 
   return (
     <section
       className={`flex items-end space-x-7 bg-gradient-to-b
-      to-black from-indigo-500 ${color} h-80 text-white p-8 w-full`}
+      to-black from-green-500 ${color} h-80 text-white p-8 w-full`}
     >
       <img
         className="h-44 w-44 shadow-2xl"

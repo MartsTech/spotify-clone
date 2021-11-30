@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
 import { shuffle } from "lodash";
+import { useStore } from "stores/store";
 
-const usePlaylistCoverColor = (
-  selectedPlaylist: SpotifyApi.PlaylistObjectSimplified | null
-) => {
+const usePlaylistCoverColor = () => {
+  const { selectedPlaylist } = useStore().playlistStore;
   const [color, setColor] = useState("");
 
   useEffect(() => {
-    if (selectedPlaylist) {
-      setColor(shuffle(colors).pop() as string);
-    }
-  }, [selectedPlaylist]);
+    setColor(shuffle(colors).pop() as string);
+  }, [selectedPlaylist?.name]);
 
-  return color;
+  return [color] as const;
 };
 
 export default usePlaylistCoverColor;
