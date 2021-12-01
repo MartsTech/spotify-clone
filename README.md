@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://spotify-clone-martstech.vercel.app">
-    <img width="180px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/2048px-Spotify_logo_without_text.svg.png" alt="Instagram Logo" />
+    <img width="150px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/2048px-Spotify_logo_without_text.svg.png" alt="Instagram Logo" />
   </a>
   <br />
   Spotify Clone
