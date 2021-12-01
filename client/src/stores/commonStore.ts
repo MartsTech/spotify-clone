@@ -7,6 +7,10 @@ class CommonStore {
     makeAutoObservable(this);
   }
 
+  resetStore = () => {
+    this.appLoading = true;
+  };
+
   setAppLoading(state: boolean) {
     this.appLoading = state;
   }

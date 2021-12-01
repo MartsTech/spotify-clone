@@ -7,7 +7,7 @@ const Sidebar = () => {
       className="text-gray-500 border-r border-gray-900
       overflow-y-scroll h-screen scrollbar-hide p-5 text-sm
       hidden md:inline-flex flex-shrink-0 sm:max-w-[14rem]
-      lg:max-w-[15rem]"
+      lg:max-w-[15rem] pb-36"
     >
       <div className="space-y-4">
         <SidebarNav />

@@ -8,6 +8,10 @@ class AuthStore {
     makeAutoObservable(this);
   }
 
+  resetStore = () => {
+    this.providers = null;
+  };
+
   setProviders = (providers: AuthProviders) => {
     this.providers = providers;
   };

@@ -20,3 +20,11 @@ export const StoreContext = createContext(store);
 export const useStore = () => {
   return useContext(StoreContext);
 };
+
+export const resetStore = () => {
+  const { commonStore, authStore, playlistStore } = store;
+
+  commonStore.resetStore();
+  authStore.resetStore();
+  playlistStore.resetStore();
+};

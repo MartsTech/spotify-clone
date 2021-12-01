@@ -1,3 +1,4 @@
+import { debounce } from "lodash";
 import { makeAutoObservable, reaction, runInAction } from "mobx";
 import spotifyApi from "utils/spotify";
 import { store } from "./store";
@@ -29,7 +30,24 @@ class PlaylistStore {
         }
       }
     );
+
+    reaction(
+      () => this.volume,
+      (volume) => {
+        this.debouncedAdjestVolume(volume);
+      }
+    );
   }
+
+  resetStore = () => {
+    this.playlists = [];
+    this.selectedPlaylist = null;
+    this.tracksRegister.clear();
+    this.selectedPlaylistTracks = [];
+    this.selectedTrack = null;
+    this.isPlaying = false;
+    this.volume = 50;
+  };
 
   setPlaylists = (playlists: SpotifyApi.PlaylistObjectSimplified[]) => {
     this.playlists = playlists;
@@ -67,8 +85,8 @@ class PlaylistStore {
     const state = await spotifyApi.getMyCurrentPlaybackState();
 
     runInAction(() => {
-      this.selectedTrack = track.body.item as SpotifyApi.TrackObjectFull;
-      this.isPlaying = state.body.is_playing;
+      this.selectedTrack = track.body?.item as SpotifyApi.TrackObjectFull;
+      this.isPlaying = state.body?.is_playing;
       this.volume = 50;
     });
   };
@@ -81,6 +99,36 @@ class PlaylistStore {
       uris: [track.uri],
     });
   };
+
+  skipToPreviousTrack = async () => {
+    await spotifyApi.skipToPrevious();
+    await this.loadCurrentTrack();
+  };
+
+  skipToNextTrack = async () => {
+    await spotifyApi.skipToNext();
+    await this.loadCurrentTrack();
+  };
+
+  handlePlayPause = async () => {
+    if (this.isPlaying) {
+      await spotifyApi.pause();
+    } else {
+      await spotifyApi.play();
+    }
+
+    runInAction(() => {
+      this.isPlaying ? (this.isPlaying = false) : (this.isPlaying = true);
+    });
+  };
+
+  setVolume = (volume: number) => {
+    this.volume = volume;
+  };
+
+  private debouncedAdjestVolume = debounce((volume: number) => {
+    spotifyApi.setVolume(volume);
+  }, 500);
 }
 
 export default PlaylistStore;

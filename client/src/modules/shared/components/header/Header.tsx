@@ -1,5 +1,6 @@
 import { ChevronDownIcon } from "@heroicons/react/outline";
 import { signOut, useSession } from "next-auth/react";
+import { resetStore } from "stores/store";
 
 const Header = () => {
   const { data: session } = useSession();
@@ -12,7 +13,10 @@ const Header = () => {
   return (
     <header className="absolute top-5 right-8">
       <div
-        onClick={() => signOut()}
+        onClick={() => {
+          resetStore();
+          signOut();
+        }}
         className="flex items-center bg-black space-x-3 opacity-90
         hover:opacity-80 cursor-pointer rounded-full p-1 pr-2"
       >

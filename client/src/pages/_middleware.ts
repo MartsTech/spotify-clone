@@ -13,9 +13,13 @@ export const middleware = async (req: NextRequest) => {
     return NextResponse.next();
   }
 
+  if (pathname.includes("/meta/icon.png")) {
+    return NextResponse.next();
+  }
+
   if (!token && pathname !== "/login") {
     return NextResponse.rewrite("/login");
   }
 
-  return;
+  return NextResponse.next();
 };
