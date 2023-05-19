@@ -1,7 +1,5 @@
 <h1 align="center">
-  <a href="https://spotify-clone-martstech.vercel.app">
-    <img width="150px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/2048px-Spotify_logo_without_text.svg.png" alt="Instagram Logo" />
-  </a>
+  <img width="150px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/2048px-Spotify_logo_without_text.svg.png" alt="Instagram Logo" />
   <br />
   Spotify Clone
   <br />
@@ -18,7 +16,6 @@
 </p>
 
 <p align="center">
-  <a href="#demo">Demo</a> •
   <a href="#key-features">Key Features</a> •
   <a href="#key-technologies">Key Technologies</a> •
   <a href="#setup">Setup</a> •
@@ -27,11 +24,6 @@
 </p>
 
 ![Home Screenshot](images/home.png?raw=true "Player")
-
----
-
-## Demo
-Here is a working live demo [here](https://spotify-clone-martstech.vercel.app)  
 
 ---
 
